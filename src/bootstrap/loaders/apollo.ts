@@ -1,4 +1,5 @@
-import Container from "typedi";
+import { ApolloServerPluginLandingPageGraphQLPlayground,
+  ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { ApolloServer } from "apollo-server-express";
 
 import { config } from "../../config";
@@ -9,6 +10,10 @@ export default async () => {
 
   return new ApolloServer({
     schema,
-    playground: config.isDev,
+    plugins: [
+      config.isDev
+        ? ApolloServerPluginLandingPageGraphQLPlayground(): 
+        ApolloServerPluginLandingPageDisabled(),
+    ]
   });
 };

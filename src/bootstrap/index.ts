@@ -3,11 +3,13 @@ import mongoose from "mongoose";
 
 import loaders from "./loaders";
 import { Config } from "../config";
+import helmet from "helmet";
 
 export default async (config: Config) => {
   const app = express();
 
   const server = await loaders(app);
+  await server.start();
 
   server.applyMiddleware({
     app,

@@ -1,9 +1,8 @@
-import { createTestClient } from "apollo-server-testing";
 import { ApolloServer, gql } from "apollo-server-express";
 import { buildSchema } from "../../utils";
 import mongoose from "mongoose";
 
-import { resolvers } from "../../modules";
+//import { resolvers } from "../../modules";
 import { TodoMongooseModel } from "../../modules/todo/model";
 
 import {
@@ -49,9 +48,6 @@ describe("Todo", () => {
       schema: graphQLSchema,
     }) as any;
 
-    // use the test server to create a query function
-    const { mutate } = createTestClient(server);
-
     // We define the query and the variables as you would do from your front-end
     const variables = {
       createTodoData: {
@@ -68,7 +64,7 @@ describe("Todo", () => {
     `;
 
     // run query against the server and snapshot the output
-    const res = await mutate({
+    const res = await server.executeOperation({
       mutation: CREATE_TODO,
       variables,
     });
@@ -96,9 +92,6 @@ describe("Todo", () => {
       schema: graphQLSchema,
     }) as any;
 
-    // use the test server to create a query function
-    const { query } = createTestClient(server);
-
     const variables = {
       id: todoId,
     };
@@ -112,7 +105,7 @@ describe("Todo", () => {
     `;
 
     // run query against the server and snapshot the output
-    const res = await query({
+    const res = server.executeOperation({
       query: GET_TODO,
       variables,
     });

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, {ConnectOptions} from "mongoose";
 
 import { config } from "../../config";
 
@@ -8,9 +8,9 @@ process.on("SIGINT", async () => {
   process.exit(0);
 });
 
-export const mongoDBConfig = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+export const mongoDBConfig:ConnectOptions = {
+  //useNewUrlParser: true,
+  //useUnifiedTopology: true,
 };
 
 // Your Mongoose setup goes here
