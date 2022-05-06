@@ -1,3 +1,4 @@
+import Container from "typedi";
 import { ApolloServerPluginLandingPageGraphQLPlayground,
   ApolloServerPluginLandingPageDisabled } from 'apollo-server-core';
 import { ApolloServer } from "apollo-server-express";
@@ -14,6 +15,10 @@ export default async () => {
       config.isDev
         ? ApolloServerPluginLandingPageGraphQLPlayground(): 
         ApolloServerPluginLandingPageDisabled(),
-    ]
+    ],
+    /*context: params => () => {
+      console.log(params.req.body.query);
+      console.log(params.req.body.variables);
+    }*/
   });
 };

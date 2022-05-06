@@ -1,5 +1,5 @@
-import { Resolver, Arg, Query, Mutation, ID } from "type-graphql";
 import { Service } from "typedi";
+import { Resolver, Arg, Query, Mutation, ID } from "type-graphql";
 import { ObjectId } from "mongodb";
 
 import { Todo } from "../../entities";
