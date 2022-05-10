@@ -30,9 +30,8 @@ afterEach(async () => {
   await clearDatabase();
 });
 
-afterAll(async (done) => {
+afterAll(async () => {
   await closeDatabase();
-  done();
 });
 
 /**
